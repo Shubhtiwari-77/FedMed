@@ -1,0 +1,19 @@
+# FedMed-FL — Privacy-Preserving Collaborative Medical Diagnostics
+# Python 3.10+ required.  Install with:  pip install -r requirements.txt
+#
+# On Google Colab, torch/numpy/pandas/sklearn/matplotlib are ALREADY installed.
+# There you only need:   !pip install -q flwr==1.22.0
+
+torch>=2.2.0              # torch.func.vmap is required for DP-SGD (needs >=2.0)
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.3
+matplotlib>=3.7
+seaborn>=0.12
+
+# Only needed for the REAL two-laptop deployment (federated/server.py + client.py).
+# The single-machine simulation in src/run_simulation.py does NOT need it.
+flwr>=1.16,<2.0
+
+# Optional — the browser-based CDSS demo in app/streamlit_app.py
+streamlit>=1.30
