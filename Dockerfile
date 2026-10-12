@@ -2,9 +2,9 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY requirements.txt ./requirements.txt
+COPY requirements.local.txt ./requirements.local.txt
 RUN python -m pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir -r requirements.local.txt
 
 COPY . .
 

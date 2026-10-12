@@ -12,3 +12,7 @@ outputs/*.csv
 outputs/*.json
 outputs/*.txt
 outputs/*.pt
+outputs/vercel_model.json
+!outputs/
+!outputs/global_model.pt
+!outputs/vercel_model.json

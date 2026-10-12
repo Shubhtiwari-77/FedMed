@@ -12,12 +12,30 @@ its hospital.
 ## 1. TL;DR — get it running in 3 commands
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.local.txt
 python src/run_simulation.py        # main experiment, ~2 minutes on a laptop CPU
 python src/cdss.py                  # doctor-facing demo
 ```
 
 No GPU. No second laptop. No dataset download. Everything lands in `outputs/`.
+
+### Deploy the CDSS on Vercel
+
+Vercel runs the lightweight HTTP function in `api/index.py`; it cannot run a
+long-lived Streamlit server. Generate and export the model before deploying:
+
+```bash
+python src/run_simulation.py
+python scripts/export_vercel_model.py
+git add outputs/vercel_model.json
+npx vercel
+```
+
+The Vercel page runs the exported MLP with only the Python standard library,
+so it stays below Vercel's function bundle limit. Keep the model private and
+deploy only to a protected Vercel project when using real clinical data. Render
+or a local Docker deployment remains the supported option for the full
+Streamlit interface.
 
 ---
 
@@ -55,7 +73,7 @@ python -m venv .venv
 # macOS / Linux
 source .venv/bin/activate
 
-pip install -r requirements.txt
+pip install -r requirements.local.txt
 python src/run_simulation.py
 ```
 
