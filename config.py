@@ -11,7 +11,22 @@ import os
 # ----------------------------------------------------------------------------
 # 0. PATHS
 # ----------------------------------------------------------------------------
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+def _resolve_root_dir() -> str:
+    """Find the project root even when commands run from nested folders.
+
+    Render, CI, and some IDE setups may execute code from a subdirectory while
+    the repository itself remains the real project root. We prefer the folder
+    that contains both config.py and the src/ tree.
+    """
+    current = os.path.dirname(os.path.abspath(__file__))
+    candidates = [current, os.path.dirname(current)]
+    for candidate in candidates:
+        if os.path.exists(os.path.join(candidate, "config.py")) and os.path.exists(os.path.join(candidate, "src")):
+            return candidate
+    return current
+
+
+ROOT_DIR = _resolve_root_dir()
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 OUT_DIR = os.path.join(ROOT_DIR, "outputs")
 os.makedirs(DATA_DIR, exist_ok=True)
