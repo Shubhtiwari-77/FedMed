@@ -7,6 +7,7 @@ services:
       python -m pip install --upgrade pip
       pip install -r requirements.txt
     startCommand: >-
+      python3 src/run_simulation.py &&
       streamlit run app/streamlit_app.py
       --server.headless true
       --server.address 0.0.0.0
