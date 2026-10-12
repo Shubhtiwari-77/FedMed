@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.gitignore
+.venv/
+.venv*
+.env
+.DS_Store
+*.ipynb_checkpoints/
+outputs/*.png
+outputs/*.csv
+outputs/*.json
+outputs/*.txt
